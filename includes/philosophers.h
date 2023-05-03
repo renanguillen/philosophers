@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:42:58 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/04/28 13:47:33 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:15:06 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,14 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include "philo_structs.h"
+# include "philo_defines.h"
 
-typedef struct s_philosopher
-{
-	int				id;
-	int				eat_count;
-	int				last_eat;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*print;
-}	t_philosopher;
+// MAIN
+// TOOLS
 
-typedef struct s_data
-{
-	int						philo_count;
-	int						time_to_die;
-	int						time_to_eat;
-	int						time_to_sleep;
-	int						must_eat_count;
-	int						dead;
-	int						finished;
-	int						start_time;
-	pthread_mutex_t			*forks;
-	pthread_mutex_t			print;
-	t_philosopher			*philosophers;
-}	t_data;
-
-
+int		ft_atoi(const char *string);
+void	*ft_calloc(size_t num_elements, size_t element_size);
+int		ft_check_arguments(int argc, char **argv);
+void	ft_print_error(int exit_code);
 #endif
