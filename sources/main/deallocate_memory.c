@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_error.c                                   :+:      :+:    :+:   */
+/*   deallocate_memory.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 16:27:14 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/03 17:09:44 by ridalgo-         ###   ########.fr       */
+/*   Created: 2023/05/10 15:24:52 by ridalgo-          #+#    #+#             */
+/*   Updated: 2023/05/10 16:04:44 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philosophers.h"
 
 /*
-* Print the error message according to the exit_code.
+* Deallocates the memory used by the program.
+
+* Returns the exit code.
 */
-void	ft_print_error(int exit_code)
+int	deallocate_memory(t_data *memory)
 {
-	if (exit_code == ERROR_ARGUMENT)
-		printf("Please check your arguments.\n");
-	else
-		return ;
+	int	exit_code;
+
+	exit_code = memory->exit_code;
+	ft_free_pointer((void **)&memory->forks);
+	ft_free_pointer((void **)&memory->philosophers);
+	ft_free_pointer((void **)&memory);
+	return (exit_code);
 }

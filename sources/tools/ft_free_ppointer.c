@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_defines.h                                    :+:      :+:    :+:   */
+/*   ft_free_ppointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 17:12:32 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/10 16:14:21 by ridalgo-         ###   ########.fr       */
+/*   Created: 2023/03/27 17:05:16 by ridalgo-          #+#    #+#             */
+/*   Updated: 2023/05/10 15:58:51 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_DEFINES_H
-# define PHILO_DEFINES_H
+#include "../../includes/philosophers.h"
 
-// Argument indexes
-# define CHECK_OK 0
-# define ERR_ARG_COUNT 1
-# define ERR_PHILO_COUNT 2
-# define ERR_TTD 3
-# define ERR_TTE 4
-# define ERR_TTS 5
-# define ERR_EAT_COUNT 6
+/*
+* Frees a pointer to pointer and set it to NULL.
 
-#endif
+* Returns nothing.
+*/
+void	ft_free_ppointer(void ***ppointer)
+{
+	int	index;
+
+	index = 0;
+	if (!*ppointer)
+		return ;
+	while ((*ppointer)[index])
+	{
+		ft_free_pointer((void **)&((*ppointer)[index]));
+		(*ppointer)[index] = NULL;
+		index++;
+	}
+	ft_free_pointer((void **)ppointer);
+	*ppointer = NULL;
+	return ;
+}

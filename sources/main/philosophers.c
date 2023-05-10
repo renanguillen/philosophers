@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_defines.h                                    :+:      :+:    :+:   */
+/*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 17:12:32 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/10 16:14:21 by ridalgo-         ###   ########.fr       */
+/*   Created: 2023/04/28 15:17:03 by ridalgo-          #+#    #+#             */
+/*   Updated: 2023/05/10 16:04:02 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_DEFINES_H
-# define PHILO_DEFINES_H
+#include "../../includes/philosophers.h"
 
-// Argument indexes
-# define CHECK_OK 0
-# define ERR_ARG_COUNT 1
-# define ERR_PHILO_COUNT 2
-# define ERR_TTD 3
-# define ERR_TTE 4
-# define ERR_TTS 5
-# define ERR_EAT_COUNT 6
+/*
+* Main function of the program.
 
-#endif
+* Returns the exit code after deallocating the memory.
+*/
+int	main(int argc, char **argv)
+{
+	int		exit_code;
+	t_data	*memory;
+
+	exit_code = check_arguments(argc, argv);
+	if (exit_code)
+		return (exit_code);
+	memory = initialize_memory(argc, argv);
+	return (deallocate_memory(memory));
+}

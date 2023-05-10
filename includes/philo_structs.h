@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:11:34 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/03 17:12:04 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:35:31 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ typedef struct s_philosopher
 typedef struct s_data
 {
 	int						philo_count;
+	int						eat_count;
 	int						time_to_die;
 	int						time_to_eat;
 	int						time_to_sleep;
-	int						must_eat_count;
 	int						dead;
 	int						finished;
 	int						start_time;

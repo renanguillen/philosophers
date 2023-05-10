@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:35 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/03 17:09:17 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:58:02 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 /*
 * Converts the initial portion of the string pointed to by _string to int.
+
+* Returns the converted value.
 */
 int	ft_atoi(const char *string)
 {
