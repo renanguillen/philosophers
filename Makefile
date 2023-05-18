@@ -8,14 +8,15 @@ PATH_TOOL = $(PATH_SRCS)tools/
 
 SRCS = $(addprefix $(PATH_MAIN),\
 		check_arguments.c\
-		deallocate_memory.c\
-		initialize_memory.c\
+		exit_handler.c\
+		init_simulation.c\
 		philosophers.c)\
 		$(addprefix $(PATH_TOOL),\
 		ft_atoi.c\
 		ft_calloc.c\
 		ft_free_pointer.c\
-		ft_free_ppointer.c)
+		ft_free_ppointer.c\
+		ft_onlydigits.c)
 OBJS = $(patsubst $(PATH_SRCS)%.c, $(PATH_OBJS)%.o, $(SRCS))
 
 CC = cc

@@ -6,39 +6,30 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:35 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/10 15:58:02 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/15 15:20:23 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philosophers.h"
 
 /*
-* Converts the initial portion of the string pointed to by _string to int.
+* Converts the string to an integer.
 
 * Returns the converted value.
 */
 int	ft_atoi(const char *string)
 {
-	int	neg;
-	int	result;
-	int	index;
+	unsigned long long int	nb;
+	int						i;
 
-	neg = 1;
-	index = 0;
-	while (string[index] == 32 || (string[index] >= 9 && string[index] <= 13))
-		index++;
-	if (string[index] == '+' || string[index] == '-')
+	i = 0;
+	nb = 0;
+	while (string[i] && (string[i] >= '0' && string[i] <= '9'))
 	{
-		if (string[index] == '-')
-			neg = -1;
-		index++;
+		nb = nb * 10 + (string[i] - '0');
+		i++;
 	}
-	result = 0;
-	while (string[index] >= '0' && string[index] <= '9')
-	{
-		result = result * 10;
-		result = result + (string[index] - 48);
-		index++;
-	}
-	return (result * neg);
+	if (nb > INT_MAX)
+		return (-1);
+	return ((int)nb);
 }

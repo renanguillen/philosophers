@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   deallocate_memory.c                                :+:      :+:    :+:   */
+/*   ft_onlydigits.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/10 15:24:52 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/10 16:04:44 by ridalgo-         ###   ########.fr       */
+/*   Created: 2023/05/15 15:09:04 by ridalgo-          #+#    #+#             */
+/*   Updated: 2023/05/15 15:21:26 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philosophers.h"
 
 /*
-* Deallocates the memory used by the program.
+* Checks if the string contains only digits.
 
-* Returns the exit code.
+* Returns 0 if true, 1 if false.
 */
-int	deallocate_memory(t_data *memory)
+int	ft_onlydigits(char *value)
 {
-	int	exit_code;
+	int	i;
 
-	exit_code = memory->exit_code;
-	ft_free_pointer((void **)&memory->forks);
-	ft_free_pointer((void **)&memory->philosophers);
-	ft_free_pointer((void **)&memory);
-	return (exit_code);
+	i = 0;
+	while (value[i])
+	{
+		if (value[i] < '0' || value[i] > '9')
+			return (1);
+		i++;
+	}
+	return (0);
 }
