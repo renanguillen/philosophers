@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:12:32 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/17 23:11:13 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:08:28 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,13 @@
 # define YES 0
 # define NO 1
 
-// Argument indexes
-# define ERR_ARG_COUNT 1
-# define ERR_PHILO_COUNT 2
-# define ERR_TTD 3
-# define ERR_TTE 4
-# define ERR_TTS 5
-# define ERR_EAT_COUNT 6
-
 // Exit codes
-# define CHECK_OK 0
+# define CONTROL_OK 0
 # define ERR_ARGS 1
 # define ERR_MEMORY 2
-# define ERR_THREAD 3
-# define ERR_MUTEX 4
+# define ERR_MTX_INIT 3
+
+// Exit messages
+# define MSG_MEMORY "Error(2): Memory allocation failed.\n"
+# define MSG_MTX_INIT "Error(3): Mutex initialization failed.\n"
 #endif

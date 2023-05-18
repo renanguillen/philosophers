@@ -6,65 +6,56 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:27:55 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/17 23:22:42 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:39:33 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philosophers.h"
 
-static int	init_philosophers(t_simulation *simulation)
+/*
+* Initializes the mutexes used to control the simulation.
+
+* Returns 0 or the exit code.
+*/
+static int	init_locks(t_simulation *simulation)
 {
-	unsigned int	i;
-
-	simulation->philos = (t_philosopher **)ft_calloc(simulation->nb_philos,
-			sizeof(t_philosopher *));
-	if (!simulation->philos)
-		return (exit_handler(simulation, "philo: allocation failed", 2));
-	i = 0;
-	while (i < simulation->nb_philos)
-	{
-		simulation->philos[i] = (t_philosopher *)ft_calloc
-			(1, sizeof(t_philosopher));
-		if (!simulation->philos[i])
-			return (exit_handler(simulation, "philo: allocation failed", 2));
-		if (pthread_mutex_init(&simulation->philos[i]->meal_time_lock, 0))
-			return (exit_handler(simulation, "philo: mutex init failed", 4));
-		simulation->philos[i]->simulation = simulation;
-		simulation->philos[i]->id = i;
-		//IM HERE
-		// assign_forks(simulation->philos[i]);
-		i++;
-	}
-	return (0);
-}
-
-void	print_simulation(t_simulation *simulation)
-{
-	unsigned int i;
-
-	i = 0;
-	printf("Simulation:\n");
-	printf("Number of philosophers: %d\n", simulation->nb_philos);
-	printf("Time to die: %ld\n", simulation->time_to_die);
-	printf("Time to eat: %ld\n", simulation->time_to_eat);
-	printf("Time to sleep: %ld\n", simulation->time_to_sleep);
-	printf("Must eat count: %d\n", simulation->must_eat_count);
-	while (i < simulation->nb_philos)
-		printf("Philosopher %d:\n", simulation->philos[i++]->id);
+	if (pthread_mutex_init(&simulation->sim_stop_lock, NULL))
+		return (exit_handler(simulation, MSG_MTX_INIT, ERR_MTX_INIT));
+	if (pthread_mutex_init(&simulation->write_lock, NULL))
+		return (exit_handler(simulation, MSG_MTX_INIT, ERR_MTX_INIT));
+	return (CONTROL_OK);
 }
 
 /*
-* Initialize the memory of the program using the arguments.
+* Initializes the forks' mutexes used to control the simulation.
 
-* Returns a pointer to the allocated memory.
+* Returns 0 or the exit code.
 */
-t_simulation	*init_simulation(int argc, char **argv)
+static int	init_forks(t_simulation *simulation)
 {
-	t_simulation	*simulation;
+	unsigned int	i;
 
-	simulation = (t_simulation *)ft_calloc(1, sizeof(t_simulation));
-	if (!simulation)
-		return (NULL);
+	simulation->fork_locks = (pthread_mutex_t *)
+		ft_calloc(simulation->nb_philos, sizeof(pthread_mutex_t));
+	if (!simulation->fork_locks)
+		return (exit_handler(simulation, MSG_MEMORY, ERR_MEMORY));
+	i = 0;
+	while (i < simulation->nb_philos)
+	{
+		if (pthread_mutex_init(&simulation->fork_locks[i], NULL))
+			return (exit_handler(simulation, MSG_MTX_INIT, ERR_MTX_INIT));
+		i++;
+	}
+	return (CONTROL_OK);
+}
+
+/*
+* Sets the simulation parameters passed as arguments via the command line.
+
+* Returns 0.
+*/
+static int	init_parameters(t_simulation *simulation, int argc, char **argv)
+{
 	simulation->nb_philos = ft_atoi(argv[1]);
 	simulation->time_to_die = ft_atoi(argv[2]);
 	simulation->time_to_eat = ft_atoi(argv[3]);
@@ -73,10 +64,28 @@ t_simulation	*init_simulation(int argc, char **argv)
 		simulation->must_eat_count = ft_atoi(argv[5]);
 	else
 		simulation->must_eat_count = -1;
-	if (init_philosophers(simulation))
-		return (NULL);
-	// if (init_forks(simulation))
-		// return (NULL);
-	print_simulation(simulation);
-	return (simulation);
+	return (CONTROL_OK);
+}
+
+/*
+* Initialize the memory of the program using the arguments.
+* All philosophers are initialized and their forks are assigned.
+
+* Returns 0 if successful or the exit code if not.
+*/
+int	init_simulation(t_simulation *simulation, int argc, char **argv)
+{
+	int	control;
+
+	control = init_parameters(simulation, argc, argv);
+	control = init_table(simulation);
+	if (control)
+		return (control);
+	control = init_forks(simulation);
+	if (control)
+		return (control);
+	control = init_locks(simulation);
+	if (control)
+		return (control);
+	return (CONTROL_OK);
 }

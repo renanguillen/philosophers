@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:25:31 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/17 22:59:49 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:02:41 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ static void	red_pill(t_simulation *simulation)
 
 * Returns the exit code.
 */
-int	exit_handler(t_simulation *simulation, char *error_to_print, int exit_code)
+int	exit_handler(t_simulation *simulation, char *print_this, int exit_code)
 {
-	if (error_to_print)
-		printf("%s\n", error_to_print);
+	if (print_this)
+		printf("%s\n", print_this);
 	if (simulation)
 		red_pill(simulation);
 	return (exit_code);

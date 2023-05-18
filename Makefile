@@ -10,6 +10,7 @@ SRCS = $(addprefix $(PATH_MAIN),\
 		check_arguments.c\
 		exit_handler.c\
 		init_simulation.c\
+		init_table.c\
 		philosophers.c)\
 		$(addprefix $(PATH_TOOL),\
 		ft_atoi.c\
