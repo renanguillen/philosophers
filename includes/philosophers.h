@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:42:58 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/22 21:37:02 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/23 18:53:45 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	*observer_routine(void *argument);
 void	*philosopher_routine(void *argument);
 void	print_status(t_philosopher *philosopher, int observer, int status);
 int		simulate(t_simulation *simulation);
+int		stop_simulation(t_simulation *simulation);
 
 // TOOLS
 

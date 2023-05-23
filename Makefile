@@ -18,7 +18,8 @@ SRCS = $(addprefix $(PATH_MAIN),\
 		observer_routine.c\
 		philosopher_routine.c\
 		print_status.c\
-		simulate.c)\
+		simulate.c\
+		stop_simulation.c)\
 		$(addprefix $(PATH_ACTS),\
 		action_eat.c\
 		action_sleep.c\
