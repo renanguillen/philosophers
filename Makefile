@@ -7,14 +7,25 @@ PATH_MAIN = $(PATH_SRCS)main/
 PATH_TOOL = $(PATH_SRCS)tools/
 
 SRCS = $(addprefix $(PATH_MAIN),\
+		action_eat.c\
+		action_sleep.c\
+		action_think.c\
+		action_wait.c\
+		allign_start_times.c\
 		check_arguments.c\
 		exit_handler.c\
 		init_simulation.c\
 		init_table.c\
-		philosophers.c)\
+		is_it_over.c\
+		main.c\
+		observer_routine.c\
+		philosopher_routine.c\
+		print_status.c\
+		simulate.c)\
 		$(addprefix $(PATH_TOOL),\
 		ft_atoi.c\
 		ft_calloc.c\
+		ft_fetch_time.c\
 		ft_free_pointer.c\
 		ft_free_ppointer.c\
 		ft_onlydigits.c)

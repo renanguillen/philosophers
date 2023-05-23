@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:17:03 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/18 15:47:47 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:37:25 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philosophers.h"
 
-void print_simulation(t_simulation *simulation)
-{
-	printf("Number of philosophers: %d\n", simulation->nb_philos);
-	printf("Time to die: %ld\n", simulation->time_to_die);
-	printf("Time to eat: %ld\n", simulation->time_to_eat);
-	printf("Time to sleep: %ld\n", simulation->time_to_sleep);
-	printf("Number of times each philosopher must eat: %d\n", simulation->must_eat_count);
-	for (unsigned int i = 0; i < simulation->nb_philos; i++)
-	{
-		printf("Philosopher %d:\n", simulation->philos[i]->id);
-		printf("  fork_left: %d\n", simulation->philos[i]->fork[0]);
-		printf("  fork_right: %d\n", simulation->philos[i]->fork[1]);
-	}
-	return ;
-}
-
 /*
 * Main function of the program.
+* Executes the simulation and prints the results.
 
 * Returns the exit code after deallocating the memory.
 */
@@ -46,6 +31,8 @@ int	main(int argc, char **argv)
 	control = init_simulation(simulation, argc, argv);
 	if (control)
 		return (control);
-	print_simulation(simulation);
+	control = simulate(simulation);
+	if (control)
+		return (control);
 	return (CONTROL_OK);
 }

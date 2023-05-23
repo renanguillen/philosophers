@@ -6,15 +6,15 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:48:36 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/18 15:40:05 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/18 18:00:07 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philosophers.h"
 
 /*
-* Assigns the forks to each philosopher. Making each right or left handed
-* depending on their id to avoid deadlocks.
+* Assigns each philosopher as right or left handed depending on their id to 
+* avoid deadlocks.
 
 * Returns nothing.
 */
