@@ -6,11 +6,11 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:18:27 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/22 21:50:18 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:40:59 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philosophers.h"
+#include "../../../includes/philosophers.h"
 
 /*
 * Simulates the philosopher eating. Locks the forks, updates the last meal

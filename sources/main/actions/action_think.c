@@ -6,11 +6,11 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:24:43 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/22 22:10:15 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:41:07 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philosophers.h"
+#include "../../../includes/philosophers.h"
 
 /*
 * Calculates the time a philosopher will think for, depending on how long

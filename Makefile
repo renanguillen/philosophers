@@ -4,13 +4,10 @@ PATH_INCS = ./includes/
 PATH_OBJS = ./objects/
 PATH_SRCS = ./sources/
 PATH_MAIN = $(PATH_SRCS)main/
+PATH_ACTS = $(PATH_MAIN)actions/
 PATH_TOOL = $(PATH_SRCS)tools/
 
 SRCS = $(addprefix $(PATH_MAIN),\
-		action_eat.c\
-		action_sleep.c\
-		action_think.c\
-		action_wait.c\
 		allign_start_times.c\
 		check_arguments.c\
 		exit_handler.c\
@@ -22,6 +19,11 @@ SRCS = $(addprefix $(PATH_MAIN),\
 		philosopher_routine.c\
 		print_status.c\
 		simulate.c)\
+		$(addprefix $(PATH_ACTS),\
+		action_eat.c\
+		action_sleep.c\
+		action_think.c\
+		action_wait.c)\
 		$(addprefix $(PATH_TOOL),\
 		ft_atoi.c\
 		ft_calloc.c\
@@ -43,6 +45,7 @@ $(NAME): $(OBJS)
 $(PATH_OBJS)%.o: $(PATH_SRCS)%.c
 	@mkdir -p $(PATH_OBJS)
 	@mkdir -p $(PATH_OBJS)main/
+	@mkdir -p $(PATH_OBJS)main/actions/
 	@mkdir -p $(PATH_OBJS)tools/
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 

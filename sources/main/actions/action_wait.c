@@ -6,11 +6,11 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:31:30 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/22 21:33:36 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:41:14 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philosophers.h"
+#include "../../../includes/philosophers.h"
 
 /*
 * Waits for the specified time. Checking for the simulation status every 100

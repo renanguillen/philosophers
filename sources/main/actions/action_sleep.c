@@ -6,11 +6,11 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:35:03 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/22 21:45:22 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:41:04 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philosophers.h"
+#include "../../../includes/philosophers.h"
 
 /*
 * Simulates the philosopher taking a nap after eating. Unlocks the forks,
