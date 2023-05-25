@@ -29,13 +29,11 @@ SRCS = $(addprefix $(PATH_MAIN),\
 		ft_atoi.c\
 		ft_calloc.c\
 		ft_fetch_time.c\
-		ft_free_pointer.c\
-		ft_free_ppointer.c\
 		ft_onlydigits.c)
 OBJS = $(patsubst $(PATH_SRCS)%.c, $(PATH_OBJS)%.o, $(SRCS))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread -g
+CFLAGS = -Wall -Wextra -Werror -pthread
 IFLAGS = -I $(PATH_INCS)
 
 all: $(NAME)

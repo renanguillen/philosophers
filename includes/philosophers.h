@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:42:58 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/23 18:53:45 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/25 18:58:10 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int		stop_simulation(t_simulation *simulation);
 int		ft_atoi(const char *string);
 void	*ft_calloc(size_t num_elements, size_t element_size);
 time_t	ft_fetch_time(void);
-void	ft_free_pointer(void **pointer);
-void	ft_free_ppointer(void ***ppointer);
 int		ft_onlydigits(char *value);
 
 #endif

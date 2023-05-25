@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:24:43 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/25 18:44:32 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/25 19:00:38 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static time_t	set_time_to_think(t_philosopher *philosopher)
 	pthread_mutex_unlock(&philosopher->meal_mutex);
 	return (time_to_think);
 }
-
 
 /*
 * Simulates a philosopher "thinking" by printing the status and waiting for
