@@ -35,7 +35,7 @@ SRCS = $(addprefix $(PATH_MAIN),\
 OBJS = $(patsubst $(PATH_SRCS)%.c, $(PATH_OBJS)%.o, $(SRCS))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -pthread -g
 IFLAGS = -I $(PATH_INCS)
 
 all: $(NAME)

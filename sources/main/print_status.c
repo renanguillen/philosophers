@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:03:09 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/22 21:49:18 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/25 15:50:44 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ static void	formatted_print(t_philosopher *philo, char *status)
 	return ;
 }
 
+/*
+* Calls formatted_print() with the correct status message.
+* If the simulation is over, it does nothing.
+
+* Returns nothing.
+*/
 void	print_status(t_philosopher *philosopher, int observer, int status)
 {
 	pthread_mutex_lock(&philosopher->simulation->write_lock);

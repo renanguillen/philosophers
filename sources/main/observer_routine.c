@@ -6,12 +6,17 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 19:07:58 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/23 13:35:13 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:07:43 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philosophers.h"
 
+/*
+* Switches the simulation stop flag to the specified value.
+
+* Returns nothing.
+*/
 static void	keep_going_with_this(t_simulation *simulation, int check)
 {
 	pthread_mutex_lock(&simulation->sim_stop_lock);
@@ -20,8 +25,14 @@ static void	keep_going_with_this(t_simulation *simulation, int check)
 	else
 		simulation->sim_stop = YES;
 	pthread_mutex_unlock(&simulation->sim_stop_lock);
+	return ;
 }
 
+/*
+* Checks if the philosopher has died. If so, flags the simulation to stop.
+
+* Returns YES if the philosopher has died, NO otherwise.
+*/
 static int	someone_died(t_philosopher *philo)
 {
 	time_t	time;
@@ -29,7 +40,7 @@ static int	someone_died(t_philosopher *philo)
 	time = ft_fetch_time();
 	if ((time - philo->last_meal) >= philo->simulation->time_to_die)
 	{
-		keep_going_with_this(philo->simulation, YES);
+		keep_going_with_this(philo->simulation, NO);
 		print_status(philo, YES, DEAD);
 		pthread_mutex_unlock(&philo->meal_time_lock);
 		return (YES);
@@ -37,6 +48,14 @@ static int	someone_died(t_philosopher *philo)
 	return (NO);
 }
 
+/*
+* Checks if either the conditions for the simulation to stop are met.
+* If the simulation has a must_eat_count, checks if all philosophers have
+* eaten enough.
+* If the simulation has a time_to_die, checks if any philosopher has died.
+
+* Returns YES if the simulation must stop, NO otherwise.
+*/
 static int	had_enough_of_this(t_simulation *simulation)
 {
 	unsigned int	i;
@@ -58,12 +77,19 @@ static int	had_enough_of_this(t_simulation *simulation)
 	}
 	if (simulation->must_eat_count != -1 && enough == YES)
 	{
-		keep_going_with_this(simulation, YES);
+		keep_going_with_this(simulation, NO);
 		return (YES);
 	}
 	return (NO);
 }
 
+/*
+* The observer routine. It checks if the philosophers are still alive and
+* if they have eaten enough.
+* Flags the simulation to stop if needed.
+
+* Returns nothing.
+*/
 void	*observer_routine(void *argument)
 {
 	t_simulation	*simulation;
@@ -77,7 +103,7 @@ void	*observer_routine(void *argument)
 	{
 		if (had_enough_of_this(simulation) == YES)
 			return (NULL);
-		usleep(1000);
+		usleep(50);
 	}
 	return (NULL);
 }

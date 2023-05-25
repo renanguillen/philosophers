@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:17:03 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/23 13:37:25 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:10:55 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int	main(int argc, char **argv)
 	if (control)
 		return (control);
 	control = simulate(simulation);
+	if (control)
+		return (control);
+	control = stop_simulation(simulation);
 	if (control)
 		return (control);
 	return (CONTROL_OK);
