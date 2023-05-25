@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:24:43 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/25 16:15:36 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/25 18:44:32 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ static time_t	set_time_to_think(t_philosopher *philosopher)
 	time_to_think = (philosopher->simulation->time_to_die
 			- (ft_fetch_time() - philosopher->last_meal)
 			- philosopher->simulation->time_to_eat) / 2;
-	pthread_mutex_unlock(&philosopher->meal_mutex);
 	if (time_to_think <= 0)
 		time_to_think = 1;
 	if (time_to_think > 600)
 		time_to_think = 200;
+	pthread_mutex_unlock(&philosopher->meal_mutex);
 	return (time_to_think);
 }
+
 
 /*
 * Simulates a philosopher "thinking" by printing the status and waiting for

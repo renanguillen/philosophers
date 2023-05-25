@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 19:07:58 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/25 16:18:02 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/25 18:31:08 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	*observer_routine(void *argument)
 	{
 		if (had_enough_of_this(simulation) == YES)
 			return (NULL);
-		usleep(50);
+		usleep(1000);
 	}
 	return (NULL);
 }
