@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 21:35:03 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/23 13:41:04 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:18:31 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 void	action_sleep(t_philosopher *philo)
 {
 	print_status(philo, NO, SLEEPING);
-	pthread_mutex_unlock(&philo->simulation->fork_locks[philo->fork[1]]);
-	pthread_mutex_unlock(&philo->simulation->fork_locks[philo->fork[0]]);
+	pthread_mutex_unlock(&philo->simulation->fork_mutexes[philo->fork[1]]);
+	pthread_mutex_unlock(&philo->simulation->fork_mutexes[philo->fork[0]]);
 	action_wait(philo->simulation, philo->simulation->time_to_sleep);
 	return ;
 }

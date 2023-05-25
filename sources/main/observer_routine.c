@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 19:07:58 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/25 16:07:43 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:18:02 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 */
 static void	keep_going_with_this(t_simulation *simulation, int check)
 {
-	pthread_mutex_lock(&simulation->sim_stop_lock);
+	pthread_mutex_lock(&simulation->stop_mutex);
 	if (check == YES)
-		simulation->sim_stop = NO;
+		simulation->stop_flag = NO;
 	else
-		simulation->sim_stop = YES;
-	pthread_mutex_unlock(&simulation->sim_stop_lock);
+		simulation->stop_flag = YES;
+	pthread_mutex_unlock(&simulation->stop_mutex);
 	return ;
 }
 
@@ -42,7 +42,7 @@ static int	someone_died(t_philosopher *philo)
 	{
 		keep_going_with_this(philo->simulation, NO);
 		print_status(philo, YES, DEAD);
-		pthread_mutex_unlock(&philo->meal_time_lock);
+		pthread_mutex_unlock(&philo->meal_mutex);
 		return (YES);
 	}
 	return (NO);
@@ -63,16 +63,16 @@ static int	had_enough_of_this(t_simulation *simulation)
 
 	enough = YES;
 	i = 0;
-	while (i < simulation->nb_philos)
+	while (i < simulation->how_many)
 	{
-		pthread_mutex_lock(&simulation->philos[i]->meal_time_lock);
+		pthread_mutex_lock(&simulation->philos[i]->meal_mutex);
 		if (someone_died(simulation->philos[i]))
 			return (YES);
 		if (simulation->must_eat_count != -1)
-			if (simulation->philos[i]->times_ate
+			if (simulation->philos[i]->eaten
 				< (unsigned int)simulation->must_eat_count)
 				enough = NO;
-		pthread_mutex_unlock(&simulation->philos[i]->meal_time_lock);
+		pthread_mutex_unlock(&simulation->philos[i]->meal_mutex);
 		i++;
 	}
 	if (simulation->must_eat_count != -1 && enough == YES)

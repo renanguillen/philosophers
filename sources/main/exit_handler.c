@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 22:25:31 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/25 16:00:52 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:18:31 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static void	red_pill(t_simulation *simulation)
 
 	if (!simulation)
 		return ;
-	if (simulation->fork_locks != NULL)
-		free(simulation->fork_locks);
+	if (simulation->fork_mutexes != NULL)
+		free(simulation->fork_mutexes);
 	if (simulation->philos != NULL)
 	{
 		i = 0;
-		while (i < simulation->nb_philos)
+		while (i < simulation->how_many)
 		{
 			if (simulation->philos[i] != NULL)
 				free(simulation->philos[i]);

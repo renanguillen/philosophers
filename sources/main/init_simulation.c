@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:27:55 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/18 15:39:33 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:18:31 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 */
 static int	init_locks(t_simulation *simulation)
 {
-	if (pthread_mutex_init(&simulation->sim_stop_lock, NULL))
+	if (pthread_mutex_init(&simulation->stop_mutex, NULL))
 		return (exit_handler(simulation, MSG_MTX_INIT, ERR_MTX_INIT));
-	if (pthread_mutex_init(&simulation->write_lock, NULL))
+	if (pthread_mutex_init(&simulation->write_mutex, NULL))
 		return (exit_handler(simulation, MSG_MTX_INIT, ERR_MTX_INIT));
 	return (CONTROL_OK);
 }
@@ -35,14 +35,14 @@ static int	init_forks(t_simulation *simulation)
 {
 	unsigned int	i;
 
-	simulation->fork_locks = (pthread_mutex_t *)
-		ft_calloc(simulation->nb_philos, sizeof(pthread_mutex_t));
-	if (!simulation->fork_locks)
+	simulation->fork_mutexes = (pthread_mutex_t *)
+		ft_calloc(simulation->how_many, sizeof(pthread_mutex_t));
+	if (!simulation->fork_mutexes)
 		return (exit_handler(simulation, MSG_MEMORY, ERR_MEMORY));
 	i = 0;
-	while (i < simulation->nb_philos)
+	while (i < simulation->how_many)
 	{
-		if (pthread_mutex_init(&simulation->fork_locks[i], NULL))
+		if (pthread_mutex_init(&simulation->fork_mutexes[i], NULL))
 			return (exit_handler(simulation, MSG_MTX_INIT, ERR_MTX_INIT));
 		i++;
 	}
@@ -56,7 +56,7 @@ static int	init_forks(t_simulation *simulation)
 */
 static int	init_parameters(t_simulation *simulation, int argc, char **argv)
 {
-	simulation->nb_philos = ft_atoi(argv[1]);
+	simulation->how_many = ft_atoi(argv[1]);
 	simulation->time_to_die = ft_atoi(argv[2]);
 	simulation->time_to_eat = ft_atoi(argv[3]);
 	simulation->time_to_sleep = ft_atoi(argv[4]);

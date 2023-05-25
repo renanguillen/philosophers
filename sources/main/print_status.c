@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:03:09 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/25 15:50:44 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:18:16 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ static void	formatted_print(t_philosopher *philo, char *status)
 */
 void	print_status(t_philosopher *philosopher, int observer, int status)
 {
-	pthread_mutex_lock(&philosopher->simulation->write_lock);
+	pthread_mutex_lock(&philosopher->simulation->write_mutex);
 	if (is_it_over(philosopher->simulation) == YES && observer == NO)
 	{
-		pthread_mutex_unlock(&philosopher->simulation->write_lock);
+		pthread_mutex_unlock(&philosopher->simulation->write_mutex);
 		return ;
 	}
 	if (status == DEAD)
@@ -48,5 +48,5 @@ void	print_status(t_philosopher *philosopher, int observer, int status)
 		formatted_print(philosopher, "is thinking");
 	else if (status == FORK)
 		formatted_print(philosopher, "has taken a fork");
-	pthread_mutex_unlock(&philosopher->simulation->write_lock);
+	pthread_mutex_unlock(&philosopher->simulation->write_mutex);
 }

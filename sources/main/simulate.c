@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:05:40 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/18 19:09:30 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:16:46 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ int	simulate(t_simulation *simulation)
 
 	simulation->start_time = ft_fetch_time();
 	i = 0;
-	while (i < simulation->nb_philos)
+	while (i < simulation->how_many)
 	{
 		if (pthread_create(&simulation->philos[i]->thread, NULL,
 				&philosopher_routine, simulation->philos[i]))
 			return (exit_handler(simulation, MSG_TRD_INIT, ERR_TRD_INIT));
 		i++;
 	}
-	if (simulation->nb_philos > 1)
+	if (simulation->how_many > 1)
 	{
 		if (pthread_create(&simulation->observer, NULL,
 				&observer_routine, simulation))

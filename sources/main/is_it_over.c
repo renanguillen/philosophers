@@ -6,7 +6,7 @@
 /*   By: ridalgo- <ridalgo-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:51:50 by ridalgo-          #+#    #+#             */
-/*   Updated: 2023/05/19 16:19:22 by ridalgo-         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:18:02 by ridalgo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	is_it_over(t_simulation *simulation)
 	int	control;
 
 	control = NO;
-	pthread_mutex_lock(&simulation->sim_stop_lock);
-	if (simulation->sim_stop == YES)
+	pthread_mutex_lock(&simulation->stop_mutex);
+	if (simulation->stop_flag == YES)
 		control = YES;
-	pthread_mutex_unlock(&simulation->sim_stop_lock);
+	pthread_mutex_unlock(&simulation->stop_mutex);
 	return (control);
 }
